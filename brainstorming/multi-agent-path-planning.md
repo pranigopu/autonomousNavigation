@@ -22,19 +22,7 @@
 Start date: 2025-02-24
 
 # Problem statement
-In essential terms, we are dealing with a **search problem** with 3 essential capabilities given to the searching agent: (1) detect obstacles/collisions from a given position, (2) search and obtain possible movement positions, (3) move to a possible movement position.
-
-**Epistemological note**: _A broader context cannot be contradicted by a narrower context that is subsumed by it, due to (a) the law of non-contradiction, and (b) the self-evident nature of identity, i.e. of similarities and differences, which is key to grasping a narrower context as being subsumed by a broader context causally and/or logically._
-
-What is currently available:
-
-- Extensible obstacle detection
-    - Can detect cellular obstacles
-    - Can detect bounding-box obstacles
-    - Can incorporate agent dimensions
-- Spatial querying for possible movement positions
-
-What we need, hence, is a generalisable solution for cooperative path planning, i.e. generalisable logic to handle dynamic obstacles (i.e. other agents) within path planning. If we can implement and test this solution in a simpler environment while ensuring that the solution's logic relies only on essentials and not on implementation-specific details (e.g. the specific method of obstacle detection and agent movement), we can generalise this logic for any grid-based environment and navigation.
+In essential terms, we are dealing with a **search problem** with 3 essential capabilities given to the searching agent: (1) detect obstacles/collisions from a given position, (2) search and obtain possible movement positions, (3) move to a possible movement position. What we are seeking is generalisable solution for cooperative path planning, i.e. generalisable logic to handle dynamic obstacles (i.e. other agents) within path planning. If we can implement and test this solution in a simpler environment while ensuring that the solution's logic relies only on essentials and not on implementation-specific details (e.g. the specific method of obstacle detection and agent movement), we can generalise this logic for any grid-based environment and navigation.
 
 **NOTE**: _Agent dimension and orientation are subsumed within obstacle detection, since these factors are key to detecting collisions with other bounding boxes in the environment (dynamic or static)._
 
@@ -79,6 +67,8 @@ However, solution (1) is less straightforward for centralisation.
 
 # Algorithm choices
 ## Cooperative A\* (CA\*)
+> **Also see my solution documentation for CA\***: [Cooperative A\*_, `solutions-documentation`](../solutions-documentation/cooperative-a-star.md)
+
 ### Why CA\*?
 A\* is an optimal, relatively simple and (as of now) sufficiently well-performing algorithm for single-agent pathfinding; moreover, due to the modularity of the code, we can easily switch the pathfinding algorithms used in the future, if need be, as long as we follow the same standard format for path representation. Due to this, my first attempt at multi-agent path planning will be to implement the simplest extension of A\* into a multi-agent context, namely cooperative A\*. Due to its basis in A\*, it should be relatively easy to understand, implement and test, and due to its optimal nature, it should produce promising results to present for the next minimum viable solution (MVS). Moreover, it introduces (in practical terms) multi-agent concepts such as consideration of other agent paths into an agent's own path planning, priority-based planning and fixed-window projection of future coordination (since cooperative path planning would be an ongoing process in a warehouse simulation context). Hence, in short, my first step toward multi-agent path planning is CA\* due to the following reasons:
 
