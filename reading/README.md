@@ -1,4 +1,4 @@
-<h1>ADDITIONAL READING</h1>
+<h1>READING</h1>
 
 # Path planning algorithms
 **Single agent**:
