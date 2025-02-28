@@ -23,7 +23,7 @@
 # Motivation for CA\*
 See the following resources:
 
-- ["The Problem with A\*", _Cooperative Pathfinding_ by David Silver](../additional-reading/multi-agent-modelling/cooperative-pathfinding.pdf)
+- ["The Problem with A\*", _Cooperative Pathfinding_ by David Silver](../reading/cooperative-pathfinding.pdf)
 - ["Why CA\*?", _Multi-Agent Path Planning_, `brainstorming`](../brainstorming/multi-agent-path-planning.md#why-ca)
 
 # Motivation for understanding CA\* conceptually
