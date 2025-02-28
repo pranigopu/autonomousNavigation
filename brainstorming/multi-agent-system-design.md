@@ -39,7 +39,6 @@ This being said, pre-planning is much more computationally intensive, since it i
 
 Related brainstorming notes:
 
-- [Setting Up Multi-Agent Simulation](./setting-up-multi-agent-simulation.md)
 - [Multi-Agent Path Planning](./multi-agent-path-planning.md)
 
 # Addressing the opportunity
