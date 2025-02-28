@@ -67,7 +67,7 @@ However, solution (1) is less straightforward for centralisation.
 
 # Algorithm choices
 ## Cooperative A\* (CA\*)
-> **Also see my solution documentation for CA\***: [Cooperative A\*_, `solutions-documentation`](../solutions-documentation/cooperative-a-star.md)
+> **Also see my solution documentation for CA\***: [_Cooperative A\*_, `solutions-documentation`](../solutions-documentation/cooperative-a-star.md)
 
 ### Why CA\*?
 A\* is an optimal, relatively simple and (as of now) sufficiently well-performing algorithm for single-agent pathfinding; moreover, due to the modularity of the code, we can easily switch the pathfinding algorithms used in the future, if need be, as long as we follow the same standard format for path representation. Due to this, my first attempt at multi-agent path planning will be to implement the simplest extension of A\* into a multi-agent context, namely cooperative A\*. Due to its basis in A\*, it should be relatively easy to understand, implement and test, and due to its optimal nature, it should produce promising results to present for the next minimum viable solution (MVS). Moreover, it introduces (in practical terms) multi-agent concepts such as consideration of other agent paths into an agent's own path planning, priority-based planning and fixed-window projection of future coordination (since cooperative path planning would be an ongoing process in a warehouse simulation context). Hence, in short, my first step toward multi-agent path planning is CA\* due to the following reasons:
