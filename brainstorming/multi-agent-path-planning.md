@@ -192,7 +192,7 @@ A data structure that informs which position is reserved by which agent at a giv
 Starting with the assumption that all agents have equal speeds helps us focus on cooperation-related complexities before moving on to synchronisation-related complexities. Moreover, a solution with this assumption is an extensible starting point, since unequal speeds can be established by duplicating an agent's position across time steps in the reservation table. This aspect is expanded upon in ["Standardising speed representation using integer time steps", _Cooperative A\*_, `solutions-documentation`](../solutions-documentation/cooperative-a-star.md#standardising-speed-representation-using-integer-time-steps) (note that the basis of the contents linked here were initially drafted roughly on paper, and was done so before moving on with the [implementation in 2025-02-26](../work-logs/2025-02.md#2025-02-26)).
 
 ### Windowed CA\* (WCA\*)
-> **Key reference**: [_Cooperative Pathfinding (Academic Paper)_ by David Silver](../additional-reading/multi-agent-modelling/cooperative-pathfinding-academic-paper.pdf)
+> **Key reference**: [_Cooperative Pathfinding (Academic Paper)_ by David Silver](../reading/cooperative-pathfinding-academic-paper.pdf)
 
 ---
 
@@ -219,7 +219,7 @@ To address these issues, we can instead prioritise and _cooperatively_ pathfind 
 
 ---
 
-Quoting from [David Silver (Cooperative Pathfinding)](../additional-reading/multi-agent-modelling/cooperative-pathfinding-academic-paper.pdf):
+Quoting from [David Silver (Cooperative Pathfinding)](../reading/cooperative-pathfinding-academic-paper.pdf):
 
 _To ensure that the agent heads in the correct direction, only the cooperative search depth is limited to a fixed depth, whilst the abstract search is executed to full depth. A window of size w can be viewed as an intermediate abstraction that is equivalent to the base level state space for w steps, and then equivalent to the abstract level state space for the remainder of the search. In other words, other agents are only considered for w steps (via the reservation table) and are ignored for the remainder of the search._
 
