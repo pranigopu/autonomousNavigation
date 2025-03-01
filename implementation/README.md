@@ -2,7 +2,7 @@
 
 ---
 
-_Codes that explore and test various solutions/part-solutions._
+_Code that explores and tests various solutions/part-solutions._
 
 ---
 
