@@ -19,7 +19,7 @@ Contains documents and notes for valuable theoretical and practical reading mate
 ## Implementation
 > **Link**: [`implementation`](./implementation)
 
-Contains codes that explore and test various solutions/part-solutions. Key areas are:
+Contains code that explore and test various solutions/part-solutions. Key areas are:
 
 - A\* and cooperative A\*
 - Animation of agents in an environment
