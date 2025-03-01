@@ -16,3 +16,11 @@ Contains explanations and notes of the conceptual and/or technical aspects of so
 > **Link**: [`reading`](./reading)
 
 Contains documents and notes for valuable theoretical and practical reading material.
+
+## Implementation
+> **Link**: [`implementation`](./implementation)
+
+Contains codes that explore and test various solutions/part-solutions. Key areas are:
+
+- A\* and cooperative A\*
+- Animation of agents in an environment
