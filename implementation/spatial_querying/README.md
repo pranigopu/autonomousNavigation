@@ -2,6 +2,8 @@
 
 ---
 
+Click [here](../tests.ipynb) to see the associated Jupyter Notebook.
+
 # About
 Spatial querying refers to seeking and retrieving information about the environment, such as:
 
