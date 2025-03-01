@@ -5,4 +5,4 @@
 - Single agent path planning
 - Multi-agent path planning
 - Text-based simulation
-- Dash-based simulation using Plotly
+- Dash-based animation (via Plotly)
