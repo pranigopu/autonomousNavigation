@@ -2,13 +2,6 @@
 
 ---
 
-**Contents**:
-
-- [About](#about)
-- [Possible simplification for rectangles](#possible-simplification-for-rectangles)
-
----
-
 Click [here](../tests.ipynb) to see the associated Jupyter Notebook.
 
 # About
