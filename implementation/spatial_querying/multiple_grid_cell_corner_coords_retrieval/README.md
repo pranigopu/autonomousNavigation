@@ -1,0 +1,3 @@
+<h1>MULTIPLE GRID CELL CORNER COORDINATES RETRIEVAL</h1>
+
+Retrieving the corner coordinates of multiple grid cells together.
