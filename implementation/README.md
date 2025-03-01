@@ -1,8 +1,6 @@
 <h1>IMPLEMENTATION</h1>
 
----
-
-_Code to explore and test various solutions/part-solutions._
+_Contains code to explore and test various solutions/part-solutions._
 
 ---
 
