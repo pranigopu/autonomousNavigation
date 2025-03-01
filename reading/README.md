@@ -1,5 +1,9 @@
 <h1>READING</h1>
 
+_Contains valuable theoretical and practical reading material._
+
+---
+
 # Path planning algorithms
 **Single agent**:
 
