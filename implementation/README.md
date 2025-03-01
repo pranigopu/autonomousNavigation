@@ -8,3 +8,4 @@ _Contains code to explore and test various solutions/part-solutions._
 - Multi-agent path planning
 - Text-based simulation
 - Dash-based animation (via Plotly)
+- Spatial querying (overlap/collision detection, multi-cell processing, etc.)
