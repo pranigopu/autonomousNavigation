@@ -273,4 +273,4 @@ $P$ _and_ $Q$ _overlap iff overlaps exist along each axis in_ $A$.
 We can leverage parallel operations (e.g. using NumPy) to perform the above detections for each $R_1, R_2 ... R_k$ against $T$ all at once, thereby greatly speeding up the implementation.
 
 # Practical testing
-[`implementation`/`trials`/`spatial_querying`/`figure_overlap_detection`](../implementation/trials/spatial_querying/figure_overlap_detection)
+[`implementation`/`trials`/`spatial_querying`/`figure_overlap_detection`](../implementation/spatial_querying/figure_overlap_detection)
