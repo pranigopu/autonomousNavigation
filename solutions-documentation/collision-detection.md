@@ -132,7 +132,7 @@ Hence, the AABB of the agent has the corners:
 **NOTE**: _Using corners for AABB may not be necessary, since it is easier to identify the row and column indices of the range of cells covering an AABB using the AABB's top-left coordinates, width and length._
 
 ## 4. Filter covering grid cells for obstacle-containing cells
-This is a matter of filtering the cells corresponding to the row and column index ranges obtained in the [previous step](#identify-the-grid-cells-covering-the-agent-bbox). This is a more technical solution that involves knowledge of the array-handling tools used (NumPy, in my case). The NumPy-based implementation for this can be seen [here](../implementation/trials/spatial_querying/grid_cell_cluster_filtering_for_obstacles.py).
+This is a matter of filtering the cells corresponding to the row and column index ranges obtained in the [previous step](#identify-the-grid-cells-covering-the-agent-bbox). This is a more technical solution that involves knowledge of the array-handling tools used (NumPy, in my case). The NumPy-based implementation for this can be seen here: [`implementation`/`spatial_querying`/`grid_cell_cluster_filtering_for_obstacles.py`](../implementation/spatial_querying/grid_cell_cluster_filtering_for_obstacles.py).
 
 # Extending to collision detection between agents
 Instead of querying all the grid cells covering the axis-aligned bounding box of a given agent, collision detection between agents is simply a matter of checking for overlaps between the bounding boxes (not axis-aligned) of a given agent against all other agents. Note how this is conceptually simpler than detecting collisions between agents and their environment.
