@@ -1,7 +1,5 @@
 <h1>SOLUTIONS DOCUMENTATION</h1>
 
----
-
 _Documentation of key conceptual and technical solutions._
 
 ---
