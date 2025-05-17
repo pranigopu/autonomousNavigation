@@ -5,8 +5,6 @@
 # About
 Contains code for single and multi-agent path planning.
 
----
-
 Key algorithms:
 
 - A\*
