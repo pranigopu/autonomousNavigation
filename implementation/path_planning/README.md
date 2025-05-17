@@ -9,7 +9,7 @@ Contains code for single and multi-agent path planning. Key algorithms:
 - Cooperative A\* (CA\*) (extends A\* to a multi-agent context)
 - Windowed CA\* (WCA\*) (extends CA\* to ensure window-wise replanning)
 
-# Files
+# Contents
 **Base classes**:
 
 - [`agent.py`](./agent.py): <br> *Defines `Agent` class for agent representation*
