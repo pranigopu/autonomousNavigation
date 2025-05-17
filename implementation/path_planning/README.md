@@ -3,7 +3,11 @@
 ---
 
 # About
-Contains code for single and multi-agent path planning. Key algorithms:
+Contains code for single and multi-agent path planning.
+
+---
+
+Key algorithms:
 
 - A\*
 - Cooperative A\* (CA\*) (extends A\* to a multi-agent context)
