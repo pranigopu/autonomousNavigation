@@ -23,8 +23,8 @@
 # Motivation for CA\*
 See the following resources:
 
-- ["The Problem with A\*", _Cooperative Pathfinding_ by David Silver](../reading/cooperative-pathfinding.pdf)
-- ["Why CA\*?", _Multi-Agent Path Planning_, `brainstorming`](../brainstorming/multi-agent-path-planning.md#why-ca)
+- ["The Problem with A\*", _Cooperative Pathfinding_ by David Silver](https://cw.fel.cvut.cz/b211/_media/courses/b3m33mkr/coop-path-aiwisdom.pdf)
+- ["Why CA\*?", _Multi-Agent Path Planning_, `ideation`](../ideation/multi-agent-path-planning.md#why-ca)
 
 # Motivation for understanding CA\* conceptually
 A conceptual solution:
@@ -124,7 +124,7 @@ Now, note that:
 This method allows us to duplicate agent positions across time steps in a structured and integer-oriented manner. By doing so, we conveniently and accurately represent relative speeds without requiring fractional time steps. Making sure time steps are integers while accurately conveying relative speeds is valuable because we can simplify and standardise the logic of the implementation while making sure it can be applied in a real-life use-case. Moreover, relative speed is sufficient for the cooperative path planning logic, since what such a planner needs is information about where the other agents would be or move in relation to a given agent with every iteration; the exact time-scale of the iteration is irrelevant. Furthermore, for rendering the simulation (either in real-time or in scaled up/down simulated time), we can simply scale up/down the simulator's time steps. To put it briefly, the unit of measurement is irrelevant for the path planner, and the desired unit can be applied by simply scaling (i.e. constant multiplication).
 
 # Fixed-priority equal speed CA\*
-To see why we are starting with this, see (1) ["Starting with fixed priority CA\*", _Multi-Agent Path Planning_, `brainstorming`](../brainstorming/multi-agent-path-planning.md#starting-with-fixed-priority-ca), and (2) ["Starting with equal speed assumption", _Multi-Agent Path Planning_, `brainstorming`](../brainstorming/multi-agent-path-planning.md#starting-with-equal-speed-assumption). Furthermore, we are using integer time steps; to see why this is an extensible and thus valid standardisation, see (3) ["Standardising speed representation using integer time steps" in this document](#standardising-speed-representation-using-integer-time-steps).
+To see why we are starting with this, see (1) ["Starting with fixed priority CA\*", _Multi-Agent Path Planning_, `ideation`](../ideation/multi-agent-path-planning.md#starting-with-fixed-priority-ca), and (2) ["Starting with equal speed assumption", _Multi-Agent Path Planning_, `ideation`](../ideation/multi-agent-path-planning.md#starting-with-equal-speed-assumption). Furthermore, we are using integer time steps; to see why this is an extensible and thus valid standardisation, see (3) ["Standardising speed representation using integer time steps" in this document](#standardising-speed-representation-using-integer-time-steps).
 
 ---
 

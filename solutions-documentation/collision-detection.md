@@ -1,6 +1,6 @@
 <h1>COLLISION DETECTION</h1>
 
-Click [here](../brainstorming/collision-detection-accounting-for-agent-dims.md) for brainstorming notes.
+Click [here](../ideation/collision-detection-accounting-for-agent-dims.md) for ideation notes.
 
 ---
 
