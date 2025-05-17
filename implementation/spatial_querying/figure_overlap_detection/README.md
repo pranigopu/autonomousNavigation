@@ -12,5 +12,17 @@ A set of codes to test and implement a mechanism to detect overlaps between a st
 
 That being said, almost all the testing is done for rectangles.
 
+# Contents
+**Functionality-providing codes**:
+
+- [`core_functionality.py`](./core_functionality.py)
+
+**Test cases**:
+
+- [`single_test_case.py`](./single_test_case.py)
+- [`randomised_test_cases.py`](./randomised_test_cases.py)
+- [`systematic_test_cases.py`](./systematic_test_cases.py)
+- [`multi_fig_overlap.py`](./multi_fig_overlap.py)
+
 # Possible simplification for rectangles
 For making use of the Separating Axis Theorem, what we need are axes parallel to _each_ edge of the figure. However, for a rectangle, its edges exist in parallel pairs, which means only the axes parallel to any 2 adjacent edges are needed. However, in the current implementation, for the sake of generalisability (and because the performance difference is probably negligible), I am not implementing this simplification.
