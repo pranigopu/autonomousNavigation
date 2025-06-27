@@ -12,6 +12,13 @@ Spatial querying refers to seeking and retrieving information about the environm
 - Corner coordinates for a set or cluster of cell positions
 - Overlaps between figures within the environment
 
+---
+
+> **Key theoretical references**:
+>
+> - [*Collision Detection*, **Autonomous Navigation**, **pranigopu.github.io**](https://pranigopu.github.io/autonomous-navigation/collision-detection.html)
+> - [*Overlap Detection for Straight-Edged Convex Figures*, **Autonomous Navigation**, **pranigopu.github.io**](https://pranigopu.github.io/autonomous-navigation/overlap-detection-for-straight-edged-convex-figures.html)
+
 # Purpose
 Spatial querying forms the framework for collision detection and avoidance, useful for:
 
