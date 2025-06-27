@@ -8,7 +8,7 @@
 
 - [About](#about)
 - [Theoretical documentation](#theoretical-documentation)
-  - [Implementation](#implementation)
+- [Implementation](#implementation)
 
 ---
 
@@ -23,7 +23,7 @@ A repository to explore autonomous navigation-related functionality for:
 
 Contains explanations and notes exploring and motivating solution approaches.
 
-## Implementation
+# Implementation
 Code to implement:
 
 - Single agent path planning
