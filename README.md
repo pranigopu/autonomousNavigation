@@ -1,35 +1,41 @@
-# Autonomous Navigation
+<h1>AUTONOMOUS NAVIGATION<h1>
+
 ***Path Planning and Navigation***
 
-A repository containing my...
+---
 
-- readings
-- writings
-- conceptual solutions
-- codes
-- documentation
+**Contents**:
 
-... regarding path planning and navigation for both single and multi-agent systems.
+- [About](#about)
+- [Theoretical documentation](#theoretical-documentation)
+  - [Implementation](#implementation)
 
-## Ideation
-> **Link**: [`ideation`](./ideation)
+---
+
+# About
+A repository to explore autonomous navigation-related functionality for:
+
+- Single agents
+- Multi-agent systems
+
+# Theoretical documentation
+> [**Autonomous Navigation**, **pranigopu.github.io**]([./ideation](https://pranigopu.github.io/autonomous-navigation/))
 
 Contains explanations and notes exploring and motivating solution approaches.
 
-## Solutions Documentation
-> **Link**: [`solutions-documentation`](./solutions-documentation)
-
-Contains explanations and notes of the conceptual and/or technical aspects of solutions.
-
-## Reading
-> **Link**: [`reading`](./reading)
-
-Contains documents and notes for valuable theoretical and practical reading material.
-
 ## Implementation
-> **Link**: [`implementation`](./implementation)
+Code to implement:
 
-Contains code to explore and test various solutions/part-solutions. Key areas are:
+- Single agent path planning
+- Multi-agent path planning
+- Text-based simulation
+- Dash-based animation (via Plotly)
+- Spatial querying (overlap/collision detection, multi-cell processing, etc.)
 
-- A\* and cooperative A\*
-- Animation of agents in an environment
+---
+
+Directories:
+
+- [`animation`](./animation/)
+- [`spatial_querying`](./spatial_querying/)
+- [`path_planning`](./path_planning/)
