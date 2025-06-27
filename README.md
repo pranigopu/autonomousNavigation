@@ -7,7 +7,6 @@
 **Contents**:
 
 - [About](#about)
-- [Theoretical documentation](#theoretical-documentation)
 - [Implementation](#implementation)
 
 ---
@@ -18,8 +17,9 @@ A repository to explore autonomous navigation-related functionality for:
 - Single agents
 - Multi-agent systems
 
-# Theoretical documentation
-> [**Autonomous Navigation**, **pranigopu.github.io**]([./ideation](https://pranigopu.github.io/autonomous-navigation/))
+---
+
+> **Key theoretical reference**: [**Autonomous Navigation**, **pranigopu.github.io**]([./ideation](https://pranigopu.github.io/autonomous-navigation/))
 
 Contains explanations and notes exploring and motivating solution approaches.
 
