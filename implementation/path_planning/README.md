@@ -14,6 +14,10 @@ Key algorithms:
 
 \[1\] *This lets higher priority agents account for stationary lower priority agents.*
 
+---
+
+> **Key theoretical reference**: [*Cooperative A\**, **Autonomous Navigation**, **pranigopu.github.io**](https://pranigopu.github.io/autonomous-navigation/cooperative-a-star.html)
+
 # Contents
 **Base classes**:
 
