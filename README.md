@@ -1,4 +1,4 @@
-<h1>AUTONOMOUS NAVIGATION<h1>
+<h1>AUTONOMOUS NAVIGATION</h1>
 
 ***Path Planning and Navigation***
 
