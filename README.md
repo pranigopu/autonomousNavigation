@@ -19,9 +19,7 @@ A repository to explore autonomous navigation-related functionality for:
 
 ---
 
-> **Key theoretical reference**: [**Autonomous Navigation**, **pranigopu.github.io**]([./ideation](https://pranigopu.github.io/autonomous-navigation/))
-
-Contains explanations and notes exploring and motivating solution approaches.
+> **Key theoretical reference**: [**Autonomous Navigation**, **pranigopu.github.io**]([./ideation](https://pranigopu.github.io/autonomous-navigation/)) <br> *Contains explanations and notes exploring and motivating solution approaches.*
 
 # Implementation
 Code to implement:
