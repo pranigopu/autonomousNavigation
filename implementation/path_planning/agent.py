@@ -24,6 +24,9 @@ class Agent:
         - 'd' = (0, 1)  (right)
         '''
 
+        self.intended_wait_time_steps_at_destination = 5
+        self.current_wait_time_steps_at_destination = 0
+
     #================================================
     def move(self, direction_symbol:str, steps=1):
         focus = self.direction_vectors.get(direction_symbol, None)

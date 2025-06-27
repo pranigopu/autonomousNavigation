@@ -195,10 +195,10 @@ def get_open_neighbours_at_time_stamp(cell:tuple[int, int, int], obstacle_symbol
     
     open_neighbours_with_time_stamp = []
     potentially_open_neighbours = get_open_neighbours(cell[:2], obstacle_symbols, grid)
-    potentially_open_neighbours.append((cell[0], cell[1], cell[2] + 1))
+    potentially_open_neighbours.append((cell[0], cell[1]))
     for pon in potentially_open_neighbours:
         reserving_agent_index = reservation_table.get((pon[0], pon[1], cell[2] + 1), None)
-        
+
         # If the neighbour is free in the next time stamp:
         if reserving_agent_index is None:
             # Checking for position swapping (the dynamic obstacle and the agent at the current cell cannot realistically swap positions within 1 time step without colliding):
@@ -206,11 +206,11 @@ def get_open_neighbours_at_time_stamp(cell:tuple[int, int, int], obstacle_symbol
             
             a = reservation_table.get((cell[0], cell[1], cell[2] + 1), None)
             b = reservation_table.get((pon[0], pon[1], cell[2]), None)
-            
+
             # Add the free position as an open neighbour only if there is no position swapping:
             if a is None or b is None or a != b:
                 open_neighbours_with_time_stamp.append((pon[0], pon[1], cell[2] + 1))
-    
+
     # Remove current cell as an open cell if all neighbouring cells do not contain dynamic obstacles:
     if not do_include_current_cell_if_free and len(open_neighbours_with_time_stamp) == len(potentially_open_neighbours):
         open_neighbours_with_time_stamp.remove((cell[0], cell[1], cell[2] + 1))
@@ -290,3 +290,36 @@ def is_adjacent(cell1:tuple[int, int], cell2:tuple[int, int]) -> bool:
     if cell1[1] == cell2[1] and abs(cell1[0] - cell2[0]) == 1:
         return True
     return False
+
+#================================================
+# ADDITIONAL HELPERS
+
+#------------------------------------
+# Value sorter:
+def sort_values(values_to_sort:list, values_to_sort_by:list, order=0):
+    '''
+    Sorts `values_to_sort` as per `values_to_sort_by`.
+
+    ---
+
+    PARAMETERS:
+    - `values_to_sort` (list): Values to sort
+    - `values_to_sort_by` (list): Values to sort by
+    - `order` (int): Order of sorted list: ascending (0) or descending (1)
+    ---
+
+    For now, selection sort is used for simplicity.
+    '''
+
+    for i in range(len(values_to_sort_by)):
+        min_value_index = i
+        for j in range(i, len(values_to_sort_by)):
+            if values_to_sort_by[j] < values_to_sort_by[min_value_index]:
+                min_value_index = j
+        
+        values_to_sort_by[i], values_to_sort_by[min_value_index] = (values_to_sort_by[min_value_index], values_to_sort_by[i])
+        values_to_sort[i], values_to_sort[min_value_index] = (values_to_sort[min_value_index], values_to_sort[i])
+
+    if order == 1:
+        values_to_sort_by.reverse()
+        values_to_sort.reverse()

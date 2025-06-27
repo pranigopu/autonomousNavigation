@@ -7,7 +7,7 @@ def fixed_priority_equal_speed_ca_star(end_positions:list[tuple[int]], start_pos
     CA* that cooperatively navigates `agents` under these constraints:
     - Priorities are fixed (here, by the ordering in the given list)
     - Agents move at equal speeds (measured in grid cells / time step) \n
-      NOTE: For simplity + since it can be scaled, speed = 1 cell/time step
+      NOTE: For simplicity and since it can be scaled, speed = 1 cell/time step
 
     ---
 
@@ -25,6 +25,9 @@ def fixed_priority_equal_speed_ca_star(end_positions:list[tuple[int]], start_pos
     
     RETURNS:
     - (list[list[tuple[int, int, int]]]): List of cooperative paths, each corresponding to an agent
+        - 1st element: Row index
+        - 2nd element: Column index
+        - 3rd element: Time stamp
     - (dict, optional): Reservation table
 
     ---

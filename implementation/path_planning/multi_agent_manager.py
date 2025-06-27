@@ -33,10 +33,26 @@ class MultiAgentManager:
     #================================================
     # WINDOWED EQUAL SPEED CA* IMPLEMENTATION
 
-    def windowed_equal_speed_ca_star_one_path_per_agent(self, end_positions, start_positions, agent_indices=None, window_size=10, reprioritisation_approach="randomised") -> tuple[list[tuple[int, int, int]], list[Agent]]:
-        from algorithm_windowed_equal_speed_ca_star_one_path_per_agent import windowed_equal_speed_ca_star_one_path_per_agent
+    def windowed_equal_speed_ca_star_v1(self, end_positions, start_positions, agent_indices=None, window_size=10, reprioritisation_approach="randomised") -> tuple[list[tuple[int, int, int]], list[Agent]]:
+        from algorithm_windowed_equal_speed_ca_star_v1 import windowed_equal_speed_ca_star_v1
         if agent_indices is None:
             agents = self.agents
         else:
             agents = [self.get_agent(agent_index) for agent_index in agent_indices]
-        return windowed_equal_speed_ca_star_one_path_per_agent(end_positions, start_positions, agents, self.environment, window_size=window_size, reprioritisation_approach=reprioritisation_approach), agents
+        return windowed_equal_speed_ca_star_v1(end_positions, start_positions, agents, self.environment, window_size=window_size, reprioritisation_approach=reprioritisation_approach), agents
+
+    def windowed_equal_speed_ca_star_v2(self, end_positions, start_positions, agent_indices=None, window_size=10) -> tuple[list[tuple[int, int, int]], list[Agent]]:
+        from algorithm_windowed_equal_speed_ca_star_v2 import windowed_equal_speed_ca_star_v2
+        if agent_indices is None:
+            agents = self.agents
+        else:
+            agents = [self.get_agent(agent_index) for agent_index in agent_indices]
+        return windowed_equal_speed_ca_star_v2(end_positions, start_positions, agents, self.environment, window_size=window_size), agents
+
+    def windowed_equal_speed_ca_star_v3(self, agent_indices=None, window_size=10, num_time_steps_before_return=30, prng_seed=None) -> tuple[list[tuple[int, int, int]], list[Agent]]:
+        from algorithm_windowed_equal_speed_ca_star_v3 import windowed_equal_speed_ca_star_v3
+        if agent_indices is None:
+            agents = self.agents
+        else:
+            agents = [self.get_agent(agent_index) for agent_index in agent_indices]
+        return windowed_equal_speed_ca_star_v3(agents, self.environment, window_size=window_size, num_time_steps_before_return=num_time_steps_before_return, prng_seed=prng_seed), agents

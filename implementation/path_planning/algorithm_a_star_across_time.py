@@ -1,5 +1,6 @@
 from queue import PriorityQueue
 from helpers import *
+from algorithm_a_star import a_star
 
 #================================================
 # HELPER: Reconstruction of path based on end position and data on visited nodes
@@ -92,7 +93,8 @@ def a_star_across_time(end_position:tuple[int], start_position:tuple[int], agent
 
     Future improvements to make:
     - Incorporate a cooldown that limits the time an agent would wait for a dynamic obstacle to move away
-    - Explore other consistent (not simply admissible) heuristics (NOTE: Manhattan distance is a consistent heuristic)
+    - Explore other consistent (not simply admissible) heuristics \n
+      NOTE: Manhattan distance is a consistent heuristic
     '''
     
     #------------------------------------
@@ -159,7 +161,7 @@ def a_star_across_time(end_position:tuple[int], start_position:tuple[int], agent
     
     ---
     
-    NOTE ON PriorityQueue:
+    NOTE: PriorityQueue:
     
     This is a class that implements the priority queue data structure.
     Items are ordered (by default in ascending order) based on the
@@ -169,7 +171,6 @@ def a_star_across_time(end_position:tuple[int], start_position:tuple[int], agent
 
     #------------------------------------
     # Checking if the goal is even reachable:
-    from algorithm_a_star import a_star
     abstract_path = a_star(end_position, start_position, agent, environment, heuristic_cost, penalise_turns)
     if abstract_path == []:
         return []
@@ -200,15 +201,19 @@ def a_star_across_time(end_position:tuple[int], start_position:tuple[int], agent
 
             previous_position_with_time_stamp = visited[current_position_with_time_stamp][PREVIOUS_POSITION]
 
-            # CASE 1: Neighbour is along the same axis as the previous and current position:
-            if penalise_turns and previous_position_with_time_stamp != current_position_with_time_stamp and not detect_direction_change(neighbour_position_with_time_stamp[:2], current_position_with_time_stamp[:2], previous_position_with_time_stamp[:2]):
+            # CASE 1: Neighbour is the same as the current position:
+            if neighbour_position_with_time_stamp == (current_position_with_time_stamp[0], current_position_with_time_stamp[1], neighbour_position_with_time_stamp[2]):
+                # REMEMBER: The neighbouring positions are in the next time stamp after the current position's time stamp!
                 transition_cost = 1
-            # CASE 2: Neighbour is adjacent to the current position but not necessarily along the same axis:
-            elif is_adjacent(current_position_with_time_stamp[:2], neighbour_position_with_time_stamp[:2]):
+            # CASE 2: Neighbour is along the same axis as the previous and current position:
+            elif penalise_turns and previous_position_with_time_stamp != current_position_with_time_stamp and not detect_direction_change(neighbour_position_with_time_stamp[:2], current_position_with_time_stamp[:2], previous_position_with_time_stamp[:2]):
                 transition_cost = 2
-            # CASE 3: Neighbour is diagonal to the current position:
-            else:
+            # CASE 3: Neighbour is adjacent to the current position but not necessarily along the same axis:
+            elif is_adjacent(current_position_with_time_stamp[:2], neighbour_position_with_time_stamp[:2]):
                 transition_cost = 3
+            # CASE 4: Neighbour is diagonal to the current position:
+            else:
+                transition_cost = 4
 
             #____________
             # Calculate the total cost (h + g, where g now is path_cost + transition_cost):

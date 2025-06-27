@@ -10,6 +10,9 @@ Key algorithms:
 - A\*
 - Cooperative A\* (CA\*) (extends A\* to a multi-agent context)
 - Windowed CA\* (WCA\*) (extends CA\* to ensure window-wise replanning)
+- Dynamic window-size WCA\* (extends WCA\* to ensure dynamic window resizing \[1\])
+
+\[1\] *This lets higher priority agents account for stationary lower priority agents.*
 
 # Contents
 **Base classes**:
@@ -19,10 +22,11 @@ Key algorithms:
 
 **Algorithms**:
 
-- [`algorithm_a_star.py`](./algorithm_a_star.py): *Basic A\* implementation*
+- [`algorithm_a_star.py`](./algorithm_a_star.py): <br> *Basic A\* implementation*
 - [`algorithm_a_star_across_time.py`](./algorithm_a_star_across_time.py): *Important for CA\**
-- [`algorithm_fixed_priority_equal_speed_ca_star.py`](./algorithm_fixed_priority_equal_speed_ca_star.py)
-- [`algorithm_windowed_equal_speed_ca_star_one_path_per_agent.py`](./algorithm_windowed_equal_speed_ca_star_one_path_per_agent.py)
+- [`algorithm_fixed_priority_equal_speed_ca_star.py`](./algorithm_fixed_priority_equal_speed_ca_star.py): <br> *Fixed priority CA\* implementation*
+- [`algorithm_windowed_equal_speed_ca_star_v1.py`](./algorithm_windowed_equal_speed_ca_star_v1.py): <br> *WCA\* implementation*
+- [`algorithm_windowed_equal_speed_ca_star_v2.py`](./algorithm_windowed_equal_speed_ca_star_v2.py): <br> *Dynamic window size WCA\* implementation*
 
 **Others**:
 

@@ -68,17 +68,15 @@ def test_a_star(end_position, start_position, manager:MultiAgentManager, time_st
     print("\n\nSimulation Ended\n")
 
 #================================================
-# TEST CASE 2: CA* WITH FIXED PRIORITY AND EQUAL SPEED
+# TEST CASE 2: CA* WITH FIXED PRIORITY OR WINDOWED AND EQUAL SPEED
 
-def test_equal_speed_ca_star_one_path_per_agent(paths, agents, agent_indices, agent_symbols, time_step_size=0.5):
+def test_equal_speed_ca_star_one_path_per_agent(paths, start_positions, end_positions, agents, agent_indices, agent_symbols, time_step_size=0.5):
     # Display agent paths:
     print("\nINTENDED PATHS:\n")
-    for start_position, end_position in zip(start_positions, end_positions):
-        print(f"{start_position} --> {end_position}")
+    for i in range(len(start_positions)):
+        print(f"{start_positions[i]} --> {end_positions[i]}")
     print('-' * 48)
     
-    # Run path planner:
-
     # Show obtained paths:
     print("\n\nOBTAINED PATHS:\n")
     for agent_index, path in zip(agent_indices, paths):
@@ -99,11 +97,6 @@ def test_equal_speed_ca_star_one_path_per_agent(paths, agents, agent_indices, ag
         
     # Duplicating the grid to modify it:
     grid = environment.grid.copy()
-    
-    # Adding path position markers to the grid:
-    for i, path in enumerate(paths):
-        for position in path:
-            grid[position[0], position[1]] = agent_symbols[i]
 
     # Defining color map:
     color_map = {
@@ -140,7 +133,7 @@ def test_equal_speed_ca_star_one_path_per_agent(paths, agents, agent_indices, ag
         t, total_time_elapsed = 0, time_step_size
         while True:
             system(clear_command)
-            print("RUNNING THE SIMULATION\n\nNOTE: Prioritisation corresponds to alphabetical order\n\n('*' = Goal position of agent which has reached its goal; regarded as free space)\n\n")
+            print("RUNNING THE SIMULATION\n\n('*' = Goal position of agent which has reached its goal; may be regarded as free space)\n\n")
             grid = environment.grid.copy()
             for i in successful_agent_indices:
                 try:
@@ -188,6 +181,62 @@ def test_equal_speed_ca_star_one_path_per_agent(paths, agents, agent_indices, ag
         )
     )
     print()
+
+#================================================
+# TEST CASE 3: CA* EQUAL SPEED ONGOING SIMULATION
+
+def test_equal_speed_ca_star_ongoing(paths, agents, agent_indices, agent_symbols, time_step_size=0.5):
+    # Duplicating the grid to modify it:
+    grid = environment.grid.copy()
+    
+    # Defining color map:
+    color_map = {
+        environment.free_space_symbol: COLORS["blue"],
+        environment.permanent_obstacle_symbol: COLORS["red"],
+        environment.temporary_obstacle_symbol: COLORS["red"],
+        '*': COLORS["bright_blue"]
+    }
+    # Coloring the agents:
+    color_choices = [
+        "green",
+        "white",
+        "magenta",
+        "bright_black",
+        "yellow",
+        "bright_red",
+        "bright_green",
+        "bright_yellow",
+        "bright_magenta",
+        "bright_white"]
+    for i in agent_indices:
+        color_map[agent_symbols[i]] = COLORS[color_choices[i % len(color_choices)]]
+
+    # Displaying environment as text:
+    print("\nENVIRONMENT GRID\n")
+    environment.display_grid_as_text(grid, color_map)
+
+    # Running real-time:
+    user_input = input("Enter y to continue with real-time simulation...\n")
+    timings = []
+    if user_input == 'y':
+        t, total_time_elapsed = 0, time_step_size
+        while True:
+            system(clear_command)
+            print("RUNNING THE SIMULATION\n\n('*' = Goal position of agent which has reached its goal; regarded as free space)\n\n")
+            grid = environment.grid.copy()
+            for i in agent_indices:
+                try:
+                    agents[i].position = paths[i][t][:2]
+                    grid[agents[i].position[0], agents[i].position[1]] = agent_symbols[agent_indices[i]]
+                except IndexError:
+                    if grid[agents[i].position[0], agents[i].position[1]] == environment.free_space_symbol:
+                        grid[agents[i].position[0], agents[i].position[1]] = '*'
+            environment.display_grid_as_text(grid, color_map)
+            stdout.write(f"\rTime elapsed: {total_time_elapsed}\n\n")
+            
+            sleep(time_step_size)
+            total_time_elapsed += time_step_size
+            t += 1
     
 #############################################################
 # RUNNING TEST CASES
@@ -239,7 +288,7 @@ if test_case == "fixed_priorities_equal_speed_ca_star":
     agent_indices = list(range(len(agents)))
     paths, agents = manager.fixed_priority_equal_speed_ca_star(end_positions, start_positions, agent_indices)
     agent_symbols = get_agent_symbols(agent_indices)
-    test_equal_speed_ca_star_one_path_per_agent(paths, agents, agent_indices, agent_symbols, 0.5)
+    test_equal_speed_ca_star_one_path_per_agent(paths, start_positions, end_positions, agents, agent_indices, agent_symbols, 0.5)
 
 #================================================
 # CA* FIXED PRIORITIES EQUAL SPEED RANDOMISED VALUES
@@ -251,7 +300,6 @@ if test_case == "fixed_priorities_equal_speed_ca_star_randomised":
         num_agents = 3
     environment = BasicGridEnvironment(10, 20, prng_seed=3)
     environment.generate_random_grid()
-    a, b = environment.grid.shape
     free_space_positions = np.argwhere(environment.grid == environment.free_space_symbol).tolist()
 
     prng_seed = 5
@@ -281,19 +329,27 @@ if test_case == "fixed_priorities_equal_speed_ca_star_randomised":
     agent_indices = list(range(len(agents)))
     paths, agents = manager.fixed_priority_equal_speed_ca_star(end_positions, start_positions, agent_indices)
     agent_symbols = get_agent_symbols(agent_indices)
-    test_equal_speed_ca_star_one_path_per_agent(paths, agents, agent_indices, agent_symbols, 1)
+    test_equal_speed_ca_star_one_path_per_agent(paths, start_positions, end_positions, agents, agent_indices, agent_symbols, 1)
 
 #================================================
-# WINDOWED CA* EQUAL SPEED RANDOMISED VALUES
+# WINDOWED CA* EQUAL SPEED
 
-if test_case == "windowed_equal_speed_ca_star_randomised":
+if test_case == "windowed_equal_speed_ca_star":
     try:
         num_agents = int(argv[2])
     except IndexError:
         num_agents = 3
+    try:
+        reprioritisation_approach = argv[3]
+    except IndexError:
+        reprioritisation_approach = "randomised"
+    try:
+        window_size = int(argv[4])
+    except IndexError:
+        window_size = 10
+    
     environment = BasicGridEnvironment(10, 20, prng_seed=3)
     environment.generate_random_grid()
-    a, b = environment.grid.shape
     free_space_positions = np.argwhere(environment.grid == environment.free_space_symbol).tolist()
 
     prng_seed = 6
@@ -304,7 +360,7 @@ if test_case == "windowed_equal_speed_ca_star_randomised":
     end_positions = []
     for i in range(num_agents):
         # Create a new agent:
-        agents.append(Agent(a, b))
+        agents.append(Agent(environment.grid.shape[0], environment.grid.shape[1]))
         
         # Setting random start and end positions (making sure the end position is not the same as the start):
         start_position = tuple(free_space_positions[rand.randint(0, len(free_space_positions))])
@@ -321,6 +377,75 @@ if test_case == "windowed_equal_speed_ca_star_randomised":
     
     manager = MultiAgentManager(agents, environment)
     agent_indices = list(range(len(agents)))
-    paths, agents = manager.windowed_equal_speed_ca_star_one_path_per_agent(end_positions, start_positions, agent_indices, 10, "randomised")
+    paths, agents = manager.windowed_equal_speed_ca_star_v1(end_positions, start_positions, agent_indices, window_size=window_size, reprioritisation_approach=reprioritisation_approach)
     agent_symbols = get_agent_symbols(agent_indices)
-    test_equal_speed_ca_star_one_path_per_agent(paths, agents, agent_indices, agent_symbols, 1)
+    test_equal_speed_ca_star_one_path_per_agent(paths, start_positions, end_positions, agents, agent_indices, agent_symbols, 1)
+
+#================================================
+# WINDOWED CA* EQUAL SPEED
+
+if test_case == "windowed_equal_speed_ca_star_variable_window_size":
+    try:
+        num_agents = int(argv[2])
+    except IndexError:
+        num_agents = 3
+    try:
+        window_size = int(argv[3])
+    except IndexError:
+        window_size = 10
+    
+    environment = BasicGridEnvironment(10, 20, prng_seed=3)
+    environment.generate_random_grid()
+    free_space_positions = np.argwhere(environment.grid == environment.free_space_symbol).tolist()
+
+    prng_seed = 6
+    rand = np.random.RandomState(seed=prng_seed)
+
+    agents = []
+    start_positions = []
+    end_positions = []
+    for i in range(num_agents):
+        # Create a new agent:
+        agents.append(Agent(environment.grid.shape[0], environment.grid.shape[1]))
+        
+        # Setting random start and end positions (making sure the end position is not the same as the start):
+        start_position = tuple(free_space_positions[rand.randint(0, len(free_space_positions))])
+        end_position = start_position
+        while start_position == end_position or end_position in end_positions:
+            end_position = tuple(free_space_positions[rand.randint(0, len(free_space_positions))])
+        
+        # To make sure no other agent is given the same start position:
+        free_space_positions.remove(list(start_position))
+
+        # Add start and end positions for agent:
+        start_positions.append(start_position)
+        end_positions.append(end_position)
+    
+    manager = MultiAgentManager(agents, environment)
+    agent_indices = list(range(len(agents)))
+    paths, agents = manager.windowed_equal_speed_ca_star_v2(end_positions, start_positions, agent_indices, window_size=window_size)
+    agent_symbols = get_agent_symbols(agent_indices)
+    test_equal_speed_ca_star_one_path_per_agent(paths, start_positions, end_positions, agents, agent_indices, agent_symbols, 1)
+
+#================================================
+# WINDOWED CA* EQUAL SPEED ONGOING
+
+if test_case == "windowed_equal_speed_ca_star_ongoing":
+    try:
+        num_agents = int(argv[2])
+    except IndexError:
+        num_agents = 3
+    try:
+        window_size = int(argv[3])
+    except IndexError:
+        window_size = 10
+    
+    environment = BasicGridEnvironment(10, 20, prng_seed=3)
+    environment.generate_random_grid()
+
+    agents = [Agent(environment.grid.shape[0], environment.grid.shape[1]) for _ in range(num_agents)]    
+    manager = MultiAgentManager(agents, environment)
+    agent_indices = list(range(len(agents)))
+    paths, agents = manager.windowed_equal_speed_ca_star_v3(agent_indices, window_size=window_size, num_time_steps_before_return=5, prng_seed=10)
+    agent_symbols = get_agent_symbols(agent_indices)
+    test_equal_speed_ca_star_ongoing(paths, agents, agent_indices, agent_symbols, 1)

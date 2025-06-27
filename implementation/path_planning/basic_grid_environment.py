@@ -25,21 +25,21 @@ class BasicGridEnvironment:
     '''
     Basic grid environment for testing multi-agent pathfinding
     functions; this is strictly a square-celled grid, for simplicity.
+
+    ---
+    
+    PARAMETERS:
+    - `grid_length_in_meters`: Length of the square grid in meters
+    - `grid_length_in_cells`: Number of cells making a side of the square grid
+
+    DEFAULT VALUES:
+    - 10 m x 10 m warehouse
+    - Obstacle grid = Warehouse divided into 20 square cells
+    
+    NOTE: Why 20? To make the minimum obstacle-forming unit 1/2 meter, which seems reasonable.
     '''
     
     def __init__(self, grid_length_in_meters=10, grid_length_in_cells=20, prng_seed=None):
-        '''
-        PARAMETERS:
-        - `grid_length_in_meters`: Length of the square grid in meters
-        - `grid_length_in_cells`: Number of cells making a side of the square grid
-
-        DEFAULT VALUES:
-        - 10 m x 10 m warehouse
-        - Obstacle grid = Warehouse divided into 20 square cells
-        
-        NOTE: Why 20? To make the minimum obstacle-forming unit 1/2 meter, which seems reasonable.
-        '''
-
         self.grid_length_in_meters = grid_length_in_meters
         self.grid_length_in_cells = grid_length_in_cells
         self.cell_length_in_meters = grid_length_in_meters / grid_length_in_cells
@@ -58,6 +58,9 @@ class BasicGridEnvironment:
 
         # Creating a PRNG with the specified seed (if any) for ensuring replicability of randomised grid:
         self.prng = np.random.RandomState(seed=prng_seed)
+
+        # Convenience attribute (may go unused):
+        self.free_space_positions = []
 
     #================================================
     def generate_random_grid(self, p:float=0.05):
